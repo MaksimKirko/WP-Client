@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">WP Client</string>
+
+    //dialogs messages
+    <string name="dialog_photo_title">Фото</string>
+    <string name="dialog_photo_choice_1">Камера</string>
+    <string name="dialog_photo_choice_2">Галерея</string>
+</resources>
