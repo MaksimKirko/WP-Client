@@ -25,12 +25,11 @@ public class MainActivity extends AppCompatActivity {
     //popups
     private AlertDialog.Builder ad;
 
-    //objects for load photos from gallery
+    //objects for load photos from gallery and camera
     private final int GALLERY_REQUEST = 1;
-    private Uri cache;
-
-    //objects for make photo with camera
     private final int CAMERA_RESULT = 0;
+    private ImageView cache;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +40,10 @@ public class MainActivity extends AppCompatActivity {
         btLPPhoto = (Button) findViewById(R.id.buttonLPPhoto);
         violPhoto = (ImageView) findViewById(R.id.imageView);
         lpPhoto = (ImageView) findViewById(R.id.imageView2);
+    }
+
+    public void buildAlertDialog() {
+        cache = new ImageView(MainActivity.this);
 
         ad = new AlertDialog.Builder(MainActivity.this);
         ad.setTitle(R.string.dialog_photo_title);
@@ -64,32 +67,27 @@ public class MainActivity extends AppCompatActivity {
             public void onCancel(DialogInterface dialog) {
             }
         });
+        ad.show();
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == CAMERA_RESULT) {
-            cache = data.getData();
+            cache.setImageURI(data.getData());
         }
         else {
             super.onActivityResult(requestCode, resultCode, data);
-            cache = data.getData();
+            cache.setImageURI(data.getData());
         }
     }
 
     public void onClickViolPhoto(View view) {
-        ad.show();
-        if(cache != null) {
-            violPhoto.setImageURI(cache);
-            cache = null;
-        }
+        violPhoto = cache;
+        buildAlertDialog();
     }
 
     public void onClickLPPhoto(View view) {
-        ad.show();
-        if(cache != null) {
-            lpPhoto.setImageURI(cache);
-            cache = null;
-        }
+        lpPhoto = cache;
+        buildAlertDialog();
     }
 }
