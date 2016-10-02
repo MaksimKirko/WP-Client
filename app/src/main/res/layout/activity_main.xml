@@ -1,67 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.github.maximkirko.wpclient.MainActivity">
+    tools:context="com.github.maximkirko.wpclient.MainActivity"
+    android:focusableInTouchMode="false">
+
 
     <TextView
+        style="@style/TextViewTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Фото нарушения"
+        android:text="@string/start_screen_description"
         android:id="@+id/textView"
         android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:gravity="center" />
 
     <TextView
+        style="@style/TextViewList"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Фото номера МТС"
-        android:id="@+id/textView2"
-        android:layout_below="@+id/textView"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="87dp" />
+        android:text="@string/button_wrong_parking"
+        android:id="@+id/textViewWrongParking"
+        android:onClick="onWrongParkingClick" />
 
-    <Button
-        style="?android:attr/buttonStyleSmall"
+    <TextView
+        style="@style/TextViewList"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/buttonViolPhoto"
-        android:background="@drawable/ic_menu_camera"
-        android:layout_margin="10dp"
-        android:layout_below="@+id/textView"
-        android:layout_alignParentStart="true"
-        android:clickable="false"
-        android:onClick="onClickViolPhoto" />
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/button_broken_road"
+        android:id="@+id/textViewBrokenRoad"
+        android:onClick="onBrokenRoadClick" />
 
-    <Button
-        style="?android:attr/buttonStyleSmall"
+    <TextView
+        style="@style/TextViewList"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/buttonLPPhoto"
-        android:background="@drawable/ic_menu_camera"
-        android:layout_margin="10dp"
-        android:layout_below="@+id/textView2"
-        android:layout_alignParentStart="true"
-        android:onClick="onClickLPPhoto" />
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/button_bad_sign"
+        android:id="@+id/textViewBadSign"
+        android:onClick="onBadSignClick"/>
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/imageView"
-        android:layout_alignTop="@+id/buttonViolPhoto"
-        android:layout_toEndOf="@+id/textView" />
-
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/imageView2"
-        android:layout_alignTop="@+id/buttonLPPhoto"
-        android:layout_alignStart="@+id/imageView" />
-</RelativeLayout>
+</LinearLayout>

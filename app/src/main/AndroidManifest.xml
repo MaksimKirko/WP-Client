@@ -3,7 +3,8 @@
     package="com.github.maximkirko.wpclient">
 
     <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/> //- право на запись на SD карту
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    //- право на запись на SD карту
     <uses-feature android:name="android.hardware.camera" />
 
     <application
@@ -18,6 +19,15 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".WrongParkingActivity"
+            android:label="@string/title_activity_wrong_parking"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.github.maximkirko.wpclient.MainActivity" />
         </activity>
     </application>
 
