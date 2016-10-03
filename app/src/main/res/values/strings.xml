@@ -9,7 +9,11 @@
     <string name="button_bad_sign">Неправильно установленный или плохо заметный знак</string>
 
     //register activities text
-    <string name="make_photo">Сделать фото</string>
+    <string name="add_photo">Добавить фото</string>
+    <string name="choose_violation_type">Выберите тип нарушения</string>
+    <string name="auto_number">Номер авто</string>
+    <string name="address">Адрес</string>
+    <string name="comment">Комментарий</string>
 
     //dialogs messages
     <string name="dialog_photo_choice_1">Камера</string>
