@@ -41,9 +41,15 @@ package com.github.maximkirko.wpclient.app.models.violations;
  */
 
 public enum Violation {
-    parkingUnderSign, //143.1
-    parkingOnGrass, //143.15
-    parkingNearShop; //143.18
+    ParkingUnderSign, //143.1
+    ParkingOnCrossing, //143.4
+    ParkingAtBusStop, //143.5
+    ParkingOnBridge, //143.6
+    ParkingNearRailroad, //143.8
+    ParkingOnLeftSide, //143.11
+    ParkingOnWalkway, //143.14
+    ParkingOnGrass, //143.15
+    ParkingNearShop; //143.18
 
     public static String[] getItems() {
         String[] items = new String[values().length];
