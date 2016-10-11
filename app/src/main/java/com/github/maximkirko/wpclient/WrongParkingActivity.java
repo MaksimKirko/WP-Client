@@ -3,17 +3,23 @@ package com.github.maximkirko.wpclient;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
 
 import com.github.maximkirko.wpclient.app.models.violations.Violation;
+
+import java.io.File;
+import java.io.IOException;
 
 public class WrongParkingActivity extends AppCompatActivity {
     //app structure objects
@@ -86,13 +92,26 @@ public class WrongParkingActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(requestCode == RESULT_CANCELED) {
+            return;
+        }
         if (requestCode == CAMERA_RESULT) {
-            current.setImageURI(data.getData());
+            BitmapFactory.Options op = new BitmapFactory.Options();
+            op.inPreferredConfig = Bitmap.Config.RGB_565;
+            op.inSampleSize = 4;
+            Bitmap bm = BitmapFactory.decodeFile(data.getData().getPath(), op);
+            current.setImageBitmap(bm);
             current.setBackground(null);
         }
         else {
             super.onActivityResult(requestCode, resultCode, data);
-            current.setImageURI(data.getData());
+            Uri selectedImage = data.getData();
+
+            BitmapFactory.Options op = new BitmapFactory.Options();
+            op.inPreferredConfig = Bitmap.Config.RGB_565;
+            op.inSampleSize = 4;
+            Bitmap bm = BitmapFactory.decodeFile(selectedImage.getEncodedPath(), op);
+            current.setImageBitmap(bm);
             current.setBackground(null);
         }
     }
@@ -100,5 +119,12 @@ public class WrongParkingActivity extends AppCompatActivity {
     public void onImageViewClick(View view) {
         current = (ImageView) view;
         buildAlertDialog();
+    }
+
+    public void hideSoftKeyboard() {
+        if(getCurrentFocus()!=null) {
+            InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+            inputMethodManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+        }
     }
 }

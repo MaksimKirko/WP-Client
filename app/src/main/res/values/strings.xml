@@ -4,9 +4,9 @@
     //start screen text
     <string name="start_screen_description">В этом приложении вы можете сообщить ГАИ о различных
     проблемах на дороге:</string>
-    <string name="button_wrong_parking">Неправильная парковка</string>
-    <string name="button_broken_road">Яма на дороге</string>
-    <string name="button_bad_sign">Неправильно установленный или плохо заметный знак</string>
+    <string name="button_wrong_parking">Неправильная парковка   →</string>
+    <string name="button_broken_road">Яма на дороге   →</string>
+    <string name="button_bad_sign">Неправильно установленный или плохо заметный знак   →</string>
 
     //register activities text
     <string name="add_photo">Добавить фото</string>
@@ -19,5 +19,5 @@
     <string name="dialog_photo_choice_1">Камера</string>
     <string name="dialog_photo_choice_2">Галерея</string>
 
-    <string name="title_activity_wrong_parking">Неправильная парковка</string>
+    <string name="title_activity_wrong_parking">Парковка</string>
 </resources>
