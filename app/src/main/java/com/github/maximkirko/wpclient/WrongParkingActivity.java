@@ -3,9 +3,6 @@ package com.github.maximkirko.wpclient;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
@@ -16,14 +13,11 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.Spinner;
 
-import com.github.maximkirko.wpclient.app.models.violations.Violation;
-
-import java.io.File;
-import java.io.IOException;
+import com.github.maximkirko.wpclient.app.models.violations.Violations;
 
 public class WrongParkingActivity extends AppCompatActivity {
     //app structure objects
-    private Violation violation;
+    private Violations violation;
 
     //view elements
     private ImageView im;
@@ -49,8 +43,8 @@ public class WrongParkingActivity extends AppCompatActivity {
 
         violationsSpinner = (Spinner) findViewById(R.id.spinnerViolType);
 
-        ArrayAdapter<?> adapter = new ArrayAdapter<Violation>(this,
-                android.R.layout.simple_spinner_item, Violation.values());
+        ArrayAdapter<?> adapter = new ArrayAdapter<Violations>(this,
+                android.R.layout.simple_spinner_item, Violations.values());
         violationsSpinner.setAdapter(adapter);
 
 //        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -96,22 +90,13 @@ public class WrongParkingActivity extends AppCompatActivity {
             return;
         }
         if (requestCode == CAMERA_RESULT) {
-            BitmapFactory.Options op = new BitmapFactory.Options();
-            op.inPreferredConfig = Bitmap.Config.RGB_565;
-            op.inSampleSize = 4;
-            Bitmap bm = BitmapFactory.decodeFile(data.getData().getPath(), op);
-            current.setImageBitmap(bm);
+            current.setImageURI(data.getData());
             current.setBackground(null);
         }
         else {
             super.onActivityResult(requestCode, resultCode, data);
-            Uri selectedImage = data.getData();
 
-            BitmapFactory.Options op = new BitmapFactory.Options();
-            op.inPreferredConfig = Bitmap.Config.RGB_565;
-            op.inSampleSize = 4;
-            Bitmap bm = BitmapFactory.decodeFile(selectedImage.getEncodedPath(), op);
-            current.setImageBitmap(bm);
+            current.setImageURI(data.getData());
             current.setBackground(null);
         }
     }

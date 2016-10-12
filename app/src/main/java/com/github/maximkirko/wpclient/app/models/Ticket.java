@@ -9,60 +9,81 @@ import java.util.List;
  */
 public class Ticket {
     private List<File> violationPhotos;
-    private List<File> licensePlatePhotos;
+    private Enum violation;
+    private String licensePlate;
+    private String address;
     private Coords location;
     private Date date;
-    private Enum violation;
+    private String comment;
+
+    public Enum getViolation() {
+        return violation;
+    }
+
+    public void setViolation(Enum violation) {
+        this.violation = violation;
+    }
+
+    public String getLicensePlate() {
+        return licensePlate;
+    }
+
+    public void setLicensePlate(String licensePlate) {
+        this.licensePlate = licensePlate;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public Coords getLocation() {
+        return location;
+    }
+
+    public void setLocation(Coords location) {
+        this.location = location;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
 
     public List<File> getViolationPhotos() {
-       return this.violationPhotos;
+        return violationPhotos;
     }
 
     public void setViolationPhotos(List<File> violationPhotos) {
         this.violationPhotos = violationPhotos;
     }
 
-    public List<File> getLicensePlatePhotos() {
-        return this.licensePlatePhotos;
-    }
-
-    public void setLicensePlatePhotos(List<File> licensePlatePhotos){
-        this.licensePlatePhotos = licensePlatePhotos;
-    }
-
-    public Coords getLocation(){
-        return this.location;
-    }
-
-    public void setLocation(Coords location){
-        this.location = location;
-    }
-
-    public Date getDate(){
-        return this.date;
-    }
-
-    public void setDate(Date date){
-        this.date = date;
-    }
-
-    public Enum getViolation(){
-        return this.violation;
-    }
-
-    public void setViolation(Enum violation){
-        this.violation = violation;
-    }
-
     public Ticket() {
 
     }
 
-    public Ticket(List<File> violationPhotos, List<File> licensePlatePhotos, Coords location, Date date, Enum violation){
-        setViolationPhotos(violationPhotos);
-        setLicensePlatePhotos(licensePlatePhotos);
-        setLocation(location);
-        setDate(date);
-        setViolation(violation);
+    public Ticket(List<File> violationPhotos, Enum violation, String licensePlate, String address, Coords location, Date date, String comment) {
+        this.violationPhotos = violationPhotos;
+        this.violation = violation;
+        this.licensePlate = licensePlate;
+        this.address = address;
+        this.location = location;
+        this.date = date;
+        this.comment = comment;
     }
+
 }

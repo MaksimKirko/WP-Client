@@ -13,6 +13,7 @@
     <string name="choose_violation_type">Выберите тип нарушения</string>
     <string name="auto_number">Номер авто</string>
     <string name="address">Адрес</string>
+    <string name="date">Дата</string>
     <string name="comment">Комментарий</string>
 
     //dialogs messages
