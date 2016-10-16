@@ -1,5 +1,9 @@
 package com.github.maximkirko.wpclient.app.models;
 
+import android.widget.ImageView;
+
+import com.github.maximkirko.wpclient.app.models.violations.Violations;
+
 import java.io.File;
 import java.util.Date;
 import java.util.List;
@@ -8,8 +12,8 @@ import java.util.List;
  * Created by Pavel on 25.09.2016.
  */
 public class Ticket {
-    private List<File> violationPhotos;
-    private Enum violation;
+    private List<byte[]> violationPhotos;
+    private Violations violation;
     private String licensePlate;
     private String address;
     private Coords location;
@@ -20,7 +24,7 @@ public class Ticket {
         return violation;
     }
 
-    public void setViolation(Enum violation) {
+    public void setViolation(Violations violation) {
         this.violation = violation;
     }
 
@@ -64,11 +68,11 @@ public class Ticket {
         this.comment = comment;
     }
 
-    public List<File> getViolationPhotos() {
+    public List<byte[]> getViolationPhotos() {
         return violationPhotos;
     }
 
-    public void setViolationPhotos(List<File> violationPhotos) {
+    public void setViolationPhotos(List<byte[]> violationPhotos) {
         this.violationPhotos = violationPhotos;
     }
 
@@ -76,7 +80,7 @@ public class Ticket {
 
     }
 
-    public Ticket(List<File> violationPhotos, Enum violation, String licensePlate, String address, Coords location, Date date, String comment) {
+    public Ticket(List<byte[]> violationPhotos, Violations violation, String licensePlate, String address, Coords location, Date date, String comment) {
         this.violationPhotos = violationPhotos;
         this.violation = violation;
         this.licensePlate = licensePlate;
@@ -85,5 +89,4 @@ public class Ticket {
         this.date = date;
         this.comment = comment;
     }
-
 }

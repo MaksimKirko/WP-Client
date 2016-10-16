@@ -11,7 +11,7 @@
     //register activities text
     <string name="add_photo">Добавить фото</string>
     <string name="choose_violation_type">Выберите тип нарушения</string>
-    <string name="auto_number">Номер авто</string>
+    <string name="license_plate">Номер авто</string>
     <string name="address">Адрес</string>
     <string name="date">Дата</string>
     <string name="comment">Комментарий</string>
@@ -21,4 +21,6 @@
     <string name="dialog_photo_choice_2">Галерея</string>
 
     <string name="title_activity_wrong_parking">Парковка</string>
+
+    <string name="toolbar_send">Отправить</string>
 </resources>

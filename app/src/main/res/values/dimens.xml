@@ -4,5 +4,7 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
 
+    <dimen name="image_width">100dp</dimen>
+    <dimen name="image_height">70dp</dimen>
 
 </resources>
