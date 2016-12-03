@@ -17,11 +17,11 @@ public class Coords {
         this.y = y;
     }
 
-    public double X() {
+    public double getX() {
         return this.x;
     }
 
-    public double Y() {
+    public double getY() {
         return this.y;
     }
 
@@ -35,7 +35,7 @@ public class Coords {
 
     @Override
     public String toString() {
-        return this.X() + " " + this.Y();
+        return this.getX() + " " + this.getY();
     }
 
     public static Coords getCoordsFromString(String line) {

@@ -1,7 +1,5 @@
 package com.github.maximkirko.wpclient.utils;
 
-import android.util.Log;
-
 import com.github.maximkirko.wpclient.app.models.Coords;
 
 import java.io.BufferedReader;
@@ -71,14 +69,14 @@ public class NetworkInfo {
 
     public static String getPlaceName(Coords coords) throws IOException {
         String result = "";
-        double temp = coords.X();
-        coords.setX(coords.Y());
+        double temp = coords.getX();
+        coords.setX(coords.getY());
         coords.setY(temp);
 
         String[] mas;
 
         try {
-            URL url = new URL("https://geocode-maps.yandex.ru/1.x/?geocode=" + coords.X() + "%20" + coords.Y());
+            URL url = new URL("https://geocode-maps.yandex.ru/1.x/?geocode=" + coords.getX() + "%20" + coords.getY());
             //result = url.getContent().toString();
             try {
                 BufferedReader reader = new BufferedReader (new InputStreamReader(url.openStream(), "UTF-8"));

@@ -3,8 +3,6 @@ package com.github.maximkirko.wpclient;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -17,14 +15,16 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 
 import com.github.maximkirko.wpclient.app.models.Coords;
+import com.github.maximkirko.wpclient.app.models.Photo;
 import com.github.maximkirko.wpclient.app.models.Ticket;
-import com.github.maximkirko.wpclient.app.models.violations.Violations;
+import com.github.maximkirko.wpclient.app.models.ViolationEnum;
 import com.github.maximkirko.wpclient.utils.*;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class WrongParkingActivity extends AppCompatActivity {
     //view elements
@@ -61,10 +61,19 @@ public class WrongParkingActivity extends AppCompatActivity {
         etComment = (EditText) findViewById(R.id.editTextComment);
         violationsSpinner = (Spinner) findViewById(R.id.spinnerViolType);
 
-        ArrayAdapter<?> adapter = new ArrayAdapter<Violations>(this,
-                android.R.layout.simple_spinner_item, Violations.values());
+        ArrayAdapter<?> adapter = new ArrayAdapter<ViolationEnum>(this,
+                android.R.layout.simple_spinner_item, ViolationEnum.values());
         violationsSpinner.setAdapter(adapter);
     }
+
+    public void onAddressUpdateClick(View view) {
+        Utils.setLocation(etAddress);
+    }
+
+    public void onDateUpdateClick(View view) {
+        Utils.setDate(etDate);
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -107,16 +116,24 @@ public class WrongParkingActivity extends AppCompatActivity {
     private Ticket makeTicket() {
         Ticket ticket = new Ticket();
 
-        List<byte[]> images = new ArrayList<byte[]>();
-        images.add(Utils.imageToByteArray(im));
-        images.add(Utils.imageToByteArray(im2));
-        images.add(Utils.imageToByteArray(im3));
+        Set<Photo> images = new HashSet<Photo>();
+
+        Photo photo = new Photo();
+        photo.setPhoto(Utils.imageToByteArray(im));
+        images.add(photo);
+        photo.setPhoto(Utils.imageToByteArray(im2));
+        images.add(photo);
+        photo.setPhoto(Utils.imageToByteArray(im3));
+        images.add(photo);
 
         ticket.setViolationPhotos(images);
-        ticket.setViolation(Violations.values()[violationsSpinner.getSelectedItemPosition()]);
+        ticket.setViolation(ViolationEnum.values()[violationsSpinner.getSelectedItemPosition()]);
         ticket.setLicensePlate(etLicensePlate.getText().toString());
         ticket.setAddress(etAddress.getText().toString());
-        ticket.setLocation(new Coords(Geolocation.imHere.getLatitude(), Geolocation.imHere.getLongitude()));
+
+        Coords coords = new Coords(Geolocation.imHere.getLatitude(), Geolocation.imHere.getLongitude());
+
+        ticket.setLocation(coords.toString());
         ticket.setDate(new Date(Date.parse(etDate.getText().toString())));
         ticket.setComment(etComment.getText().toString());
 

@@ -46,7 +46,7 @@ public class Utils {
                                 Geolocation.imHere.getLongitude());
                         loc = NetworkInfo.getPlaceName(myCoords);
                     }
-                    while(myCoords.X() == 0.0 || myCoords.Y() == 0.0);
+                    while(myCoords.getX() == 0.0 || myCoords.getY() == 0.0);
                 }
                 catch (Exception ex) {
                 }

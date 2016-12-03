@@ -9,8 +9,9 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.github.maximkirko.wpclient.MainActivity"
-    android:focusableInTouchMode="false">
-
+    android:focusableInTouchMode="false"
+    android:baselineAligned="false"
+    android:weightSum="1">
 
     <TextView
         style="@style/TextViewTitle"
@@ -21,34 +22,79 @@
         android:id="@+id/textView"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="30dp"
         android:gravity="center" />
 
-    <TextView
-        style="@style/TextViewList"
+    <RadioGroup
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="@string/button_wrong_parking"
-        android:id="@+id/textViewWrongParking"
-        android:onClick="onWrongParkingClick" />
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="10dp"
+        android:id="@+id/radioGroup">
 
-    <TextView
-        style="@style/TextViewList"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="@string/button_broken_road"
-        android:id="@+id/textViewBrokenRoad"
-        android:onClick="onBrokenRoadClick" />
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Неправильная парковка"
+            android:id="@+id/radioButton"
+            android:checked="true"
+            android:layout_margin="10dp"
+            style="@style/MainActivityRadioButton"/>
 
-    <TextView
-        style="@style/TextViewList"
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Яма на дороге"
+            android:id="@+id/radioButton2"
+            android:checked="false"
+            android:layout_margin="10dp"
+            style="@style/MainActivityRadioButton"/>
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Неправильно установленный или плохо заметный знак"
+            android:id="@+id/radioButton3"
+            android:checked="false"
+            android:layout_margin="10dp"
+            style="@style/MainActivityRadioButton"/>
+    </RadioGroup>
+
+    <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="@string/button_bad_sign"
-        android:id="@+id/textViewBadSign"
-        android:onClick="onBadSignClick"/>
+        android:text="Перейти к заполнению"
+        android:id="@+id/buttonGo"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        android:onClick="onButtonGoClick"
+        android:visibility="invisible"/>
+
+    <!--<TextView-->
+        <!--style="@style/TextViewList"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:textAppearance="?android:attr/textAppearanceMedium"-->
+        <!--android:text="@string/button_wrong_parking"-->
+        <!--android:id="@+id/textViewWrongParking"-->
+        <!--android:onClick="onWrongParkingClick" />-->
+
+    <!--<TextView-->
+        <!--style="@style/TextViewList"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:textAppearance="?android:attr/textAppearanceMedium"-->
+        <!--android:text="@string/button_broken_road"-->
+        <!--android:id="@+id/textViewBrokenRoad"-->
+        <!--android:onClick="onBrokenRoadClick" />-->
+
+    <!--<TextView-->
+        <!--style="@style/TextViewList"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:textAppearance="?android:attr/textAppearanceMedium"-->
+        <!--android:text="@string/button_bad_sign"-->
+        <!--android:id="@+id/textViewBadSign"-->
+        <!--android:onClick="onBadSignClick"/>-->
 
 </LinearLayout>

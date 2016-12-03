@@ -8,18 +8,24 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="TextViewList" parent="@android:style/Widget.TextView">
-        <item name="android:layout_gravity">left</item>
-        <item name="android:layout_marginTop">30dp</item>
-        <item name="android:layout_marginLeft">20dp</item>
-        <item name="android:fontFamily">sans-serif-condensed</item>
-        <item name="android:textStyle">normal</item>
+    <style name="MainActivityRadioButton" parent="@android:style/Widget.CompoundButton.RadioButton">
+        <item name="android:textSize">18dp</item>
+        <item name="android:fontFamily">sans-serif-thin</item>
+        <item name="android:textStyle">normal|bold</item>
     </style>
 
     <style name="TextViewTitle" parent="@android:style/Widget.TextView">
         <item name="android:textSize">18dp</item>
         <item name="android:fontFamily">sans-serif-condensed</item>
         <item name="android:textStyle">normal|bold</item>
+    </style>
+
+    <style name="TextViewList" parent="@android:style/Widget.TextView">
+        <item name="android:layout_gravity">left</item>
+        <item name="android:layout_marginTop">30dp</item>
+        <item name="android:layout_marginLeft">20dp</item>
+        <item name="android:fontFamily">sans-serif-condensed</item>
+        <item name="android:textStyle">normal</item>
     </style>
 
     <style name="EditTextSingle" parent="@android:style/Widget.EditText">
