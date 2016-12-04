@@ -20,6 +20,11 @@ import com.github.maximkirko.wpclient.app.models.Ticket;
 import com.github.maximkirko.wpclient.app.models.ViolationEnum;
 import com.github.maximkirko.wpclient.utils.*;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.net.URL;
+import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
@@ -40,6 +45,8 @@ public class WrongParkingActivity extends AppCompatActivity {
     //objects for load photos from gallery and camera
     private final int REQUEST_IMAGE_CAPTURE = 1;
     private ImageView current;
+
+    private String res = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,6 +93,9 @@ public class WrongParkingActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         if (id == R.id.action_send) {
+
+            send();
+
             return true;
         }
 
@@ -138,5 +148,52 @@ public class WrongParkingActivity extends AppCompatActivity {
         ticket.setComment(etComment.getText().toString());
 
         return ticket;
+    }
+
+    private void send() {
+
+        new Thread(new Runnable() {
+            public void run() {
+
+                try{
+                    URL url = new URL("http://37.212.237.147:8080/ClientInteractionServlet");
+                    URLConnection connection = url.openConnection();
+
+                    String inputString = "THIS SHIT WORKS!";
+
+
+                    connection.setDoOutput(true);
+                    OutputStreamWriter out = new OutputStreamWriter(connection.getOutputStream());
+                    out.write(inputString);
+                    out.close();
+
+                    BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+
+                    String returnString="";
+
+                    while ((returnString = in.readLine()) != null)
+                    {
+                        res += returnString;
+                    }
+                    in.close();
+
+
+                    runOnUiThread(new Runnable() {
+                        public void run() {
+
+                            etComment.setText(res);
+
+                        }
+                    });
+
+                }catch(Exception e)
+                {
+
+                }
+
+            }
+        }).start();
+
+
     }
 }
