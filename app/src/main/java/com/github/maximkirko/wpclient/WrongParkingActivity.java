@@ -1,9 +1,12 @@
 package com.github.maximkirko.wpclient;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.provider.Settings;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -13,16 +16,22 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.github.maximkirko.wpclient.app.models.Coords;
 import com.github.maximkirko.wpclient.app.models.Photo;
+import com.github.maximkirko.wpclient.app.models.TestClass;
 import com.github.maximkirko.wpclient.app.models.Ticket;
 import com.github.maximkirko.wpclient.app.models.ViolationEnum;
 import com.github.maximkirko.wpclient.utils.*;
 
+import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.io.OutputStreamWriter;
+import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
@@ -95,7 +104,6 @@ public class WrongParkingActivity extends AppCompatActivity {
         if (id == R.id.action_send) {
 
             send();
-
             return true;
         }
 
@@ -104,7 +112,7 @@ public class WrongParkingActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if(requestCode == RESULT_CANCELED) {
+        if (requestCode == RESULT_CANCELED) {
             return;
         }
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
@@ -121,6 +129,22 @@ public class WrongParkingActivity extends AppCompatActivity {
         if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
             startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
         }
+    }
+
+    public void onButtonHintClick(View view) {
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Справка")
+                .setMessage(R.string.button_hint_text)
+                .setCancelable(false)
+                .setNegativeButton("ОК",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();
+                            }
+                        });
+        AlertDialog alert = builder.create();
+        alert.show();
     }
 
     private Ticket makeTicket() {
@@ -155,45 +179,29 @@ public class WrongParkingActivity extends AppCompatActivity {
         new Thread(new Runnable() {
             public void run() {
 
-                try{
-                    URL url = new URL("http://37.212.237.147:8080/ClientInteractionServlet");
-                    URLConnection connection = url.openConnection();
+                try {
 
-                    String inputString = "THIS SHIT WORKS!";
+                    URL url = new URL("http://10.0.2.2:8080/android");
+                    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                    conn.setDoOutput(true);
+                    conn.setRequestMethod("POST");
+                    conn.setRequestProperty("Content-Type", "application/json");
 
+                    Ticket ticket = makeTicket();
 
-                    connection.setDoOutput(true);
-                    OutputStreamWriter out = new OutputStreamWriter(connection.getOutputStream());
-                    out.write(inputString);
-                    out.close();
+                    JSONObject jObj = Utils.quickParse(ticket);
 
-                    BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                    System.out.println(jObj.toString());
 
-                    String returnString="";
+                    OutputStream os = conn.getOutputStream();
+                    os.write(jObj.toString().getBytes());
+                    os.flush();
 
-                    while ((returnString = in.readLine()) != null)
-                    {
-                        res += returnString;
-                    }
-                    in.close();
-
-
-                    runOnUiThread(new Runnable() {
-                        public void run() {
-
-                            etComment.setText(res);
-
-                        }
-                    });
-
-                }catch(Exception e)
-                {
-
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
 
             }
         }).start();
-
-
     }
 }

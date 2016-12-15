@@ -23,30 +23,28 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Geolocation.SetUpLocationListener(this);
 
+        ticketActivity = WrongParkingActivity.class;
 
         buttonGo = (Button) findViewById(R.id.buttonGo);
-        radioGroup = (RadioGroup) findViewById(R.id.radioGroup);
-
-        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-
-            @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-                switch (checkedId) {
-                    case R.id.radioButton:
-                        ticketActivity = WrongParkingActivity.class;
-                        buttonGo.setVisibility(View.VISIBLE);
-                        break;
-                    case R.id.radioButton2:
-                        ticketActivity = WrongParkingActivity.class;
-                        buttonGo.setVisibility(View.VISIBLE);
-                        break;
-                    case R.id.radioButton3:
-                        ticketActivity = WrongParkingActivity.class;
-                        buttonGo.setVisibility(View.VISIBLE);
-                        break;
-                }
-            }
-        });
+//        radioGroup = (RadioGroup) findViewById(R.id.radioGroup);
+//
+//        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+//
+//            @Override
+//            public void onCheckedChanged(RadioGroup group, int checkedId) {
+//                switch (checkedId) {
+//                    case R.id.radioButton:
+//                        ticketActivity = WrongParkingActivity.class;
+//                        break;
+//                    case R.id.radioButton2:
+//                        ticketActivity = WrongParkingActivity.class;
+//                        break;
+//                    case R.id.radioButton3:
+//                        ticketActivity = WrongParkingActivity.class;
+//                        break;
+//                }
+//            }
+//        });
     }
 
     public void onButtonGoClick(View view) {

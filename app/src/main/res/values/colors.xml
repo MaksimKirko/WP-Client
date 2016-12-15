@@ -5,4 +5,5 @@
     <color name="colorAccent">#494949</color>
     <color name="button_color">#ffffff</color>
     <color name="button_border">#c2bfbf</color>
+    <color name="photo_add_block_background">#c7c4c4</color>
 </resources>

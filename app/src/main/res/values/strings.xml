@@ -2,13 +2,17 @@
     <string name="app_name">WP Client</string>
 
     //start screen text
-    <string name="start_screen_description">В этом приложении вы можете сообщить ГАИ о различных
-    проблемах на дороге:</string>
+    <string name="start_screen_description">В этом приложении вы можете сообщить ГАИ о нарушениях правил парковки</string>
     <string name="button_wrong_parking">Неправильная парковка   →</string>
     <string name="button_broken_road">Яма на дороге   →</string>
     <string name="button_bad_sign">Неправильно установленный или плохо заметный знак   →</string>
+    <string name="button_go_text">Перейти к заполнению заявки</string>
 
     //register activities text
+    <string name="button_hint_text">На первой фотографии должен быть виден факт нарушения.\n
+        На второй - регистрационный знак транспортного средства.\n
+        На третей - отсутствие в машине водителя(при остановке на пешеходном переходе).\n
+        Съемка должна производится в горизонтальном положении!</string>
     <string name="add_photo">Добавить фото</string>
     <string name="choose_violation_type">Выберите тип нарушения</string>
     <string name="license_plate">Номер авто</string>

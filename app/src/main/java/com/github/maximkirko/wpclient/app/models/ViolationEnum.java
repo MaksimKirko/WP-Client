@@ -5,56 +5,39 @@ import java.util.ArrayList;
 import java.util.List;
 
 public enum ViolationEnum {
-    ParkingUnderSign, //143.1
-    ParkingOnCrossing, //143.4
-    ParkingAtBusStop, //143.5
-    ParkingOnBridge, //143.6
-    ParkingNearRailroad, //143.8
-    ParkingOnLeftSide, //143.11
-    ParkingOnWalkway, //143.14
-    ParkingOnGrass, //143.15
-    ParkingNearShop; //143.18
+    ParkingUnderSign ("Парковка в зоне действия запрещающего знака"), //143.1
+    ParkingOnCrossing ("Парковка на перекрестке"), //143.4
+    ParkingAtBusStop ("Парковка на остановке маршрутных т/с"), //143.5
+    ParkingOnBridge ("Парковка на мосту/эстакаде"), //143.6
+    ParkingNearRailroad ("Парковка у/на железнодорожных путях"), //143.8
+    ParkingOnLeftSide ("Парковка на левой стороне проезжей части"), //143.11
+    ParkingOnWalkway ("Парковка на пешеходной дорожке"), //143.14
+    ParkingOnGrass ("Парковка на газоне"), //143.15
+    ParkingNearShop ("Парковка у дверей магазина"); //143.18
 
+    private final String name;
 
-    public static String getRusViolation(ViolationEnum violationEnum) {
-
-        switch (violationEnum) {
-            case ParkingAtBusStop:
-                return "Парковка на остановке маршрутных т/с";
-            case ParkingNearRailroad:
-                return "Парковка у/на железнодорожных путях";
-            case ParkingNearShop:
-                return "Парковка у дверей магазина";
-            case ParkingOnBridge:
-                return "Парковка на мосту/эстакаде";
-            case ParkingOnCrossing:
-                return "Парковка на перекрестке";
-            case ParkingOnGrass:
-                return "Парковка на газоне";
-            case ParkingOnLeftSide:
-                return "Парковка на левой части проезжей части";
-            case ParkingOnWalkway:
-                return "Парковка на пешеходной дорожке";
-            case ParkingUnderSign:
-                return "Парковка в зоне действия запрещающего знака";
-        }
-        return "";
+    private ViolationEnum(String v) {
+        name = v;
     }
 
-    public static List<String> getRusViolationsList() {
-        List<String> violations = new ArrayList<>();
+    public boolean equalsName(String otherName) {
+        return (otherName == null) ? false : name.equals(otherName);
+    }
 
-        violations.add("Парковка на остановке маршрутных т/с");
-        violations.add("Парковка у/на железнодорожных путях");
-        violations.add("Парковка у дверей магазина");
-        violations.add("Парковка на мосту/эстакаде");
-        violations.add("Парковка на перекрестке");
-        violations.add("Парковка на газоне");
-        violations.add("Парковка на левой части проезжей части");
-        violations.add("Парковка на пешеходной дорожке");
-        violations.add("Парковка в зоне действия запрещающего знака");
+    @Override
+    public String toString() {
+        return this.name;
+    }
 
-        return violations;
+    public static ViolationEnum getViolation(String s) {
+
+        for (ViolationEnum en : ViolationEnum.values()) {
+            if (en.toString().equals(s)) {
+                return en;
+            }
+        }
+        return null;
     }
 }
 

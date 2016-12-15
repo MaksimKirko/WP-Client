@@ -8,7 +8,13 @@ import android.widget.ImageView;
 
 import com.github.maximkirko.wpclient.app.models.Coords;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.json.JSONTokener;
+
 import java.io.ByteArrayOutputStream;
+import java.lang.annotation.Annotation;
+import java.lang.reflect.Field;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
@@ -46,9 +52,8 @@ public class Utils {
                                 Geolocation.imHere.getLongitude());
                         loc = NetworkInfo.getPlaceName(myCoords);
                     }
-                    while(myCoords.getX() == 0.0 || myCoords.getY() == 0.0);
-                }
-                catch (Exception ex) {
+                    while (myCoords.getX() == 0.0 || myCoords.getY() == 0.0);
+                } catch (Exception ex) {
                 }
                 handlerMyLoc.sendEmptyMessage(0);
             }
@@ -71,4 +76,26 @@ public class Utils {
         viewDate = et;
         viewDate.setText(strDate);
     }
+
+    public static JSONObject quickParse(Object obj) throws IllegalArgumentException, IllegalAccessException, JSONException {
+        JSONObject object = new JSONObject();
+
+        Class<?> objClass = obj.getClass();
+        Field[] fields = objClass.getDeclaredFields();
+        for (Field field : fields) {
+            field.setAccessible(true);
+            String name = field.getName();
+            Object value = field.get(obj);
+
+            if (value == null)
+                value = new String("");
+
+            object.put(name, value);
+
+
+        }
+
+        return object;
+    }
+
 }
